@@ -3,14 +3,15 @@ import HelloWorld from "./components/HelloWorld.vue";
 import { useCounterStore } from './stores/counter';
 
 const store = useCounterStore();
-
 </script>
 
 <template>
   <header>
     <div class="wrapper">
       <HelloWorld msg="Learn Pinia" />
-      <button @click="store.increment()">{{store.counter}}</button>
+      <button @click="store.increment()">Increment By Action {{store.counter}} -> {{store.doubleCount}}</button>
+      <button @click="store.$patch({counter: 200})">Patch to 200</button>
+      <button @click="store.$reset()">RESET all</button>
     </div>
   </header>
 </template>
