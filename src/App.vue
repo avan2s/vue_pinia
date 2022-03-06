@@ -1,17 +1,30 @@
 <script setup lang="ts">
 import HelloWorld from "./components/HelloWorld.vue";
-import { useCounterStore } from './stores/counter';
-
-const store = useCounterStore();
+import { useBankAccountStore } from "./stores/bankAccount";
+const store = useBankAccountStore();
 </script>
 
 <template>
   <header>
     <div class="wrapper">
-      <HelloWorld msg="Learn Pinia" />
-      <button @click="store.increment()">Increment By Action {{store.counter}} -> {{store.doubleCount}}</button>
-      <button @click="store.$patch({counter: 200})">Patch to 200</button>
-      <button @click="store.$reset()">RESET all</button>
+      <HelloWorld msg="Bank of Pinia" />
+      <h3>Balance: {{ store.runningBalance }}</h3>
+
+      <button @click="store.charge(5)">Buy Coffee $5</button>
+
+      <h3>Pending:</h3>
+      <ul>
+        <li v-for="item in store.pendingTransactions" :key="item.id">
+          ${{ item.amount }}
+        </li>
+      </ul>
+
+      <h3>Processed:</h3>
+      <ul>
+        <li v-for="item in store.processedTransactions" :key="item.id">
+          ${{ item.amount }}
+        </li>
+      </ul>
     </div>
   </header>
 </template>
