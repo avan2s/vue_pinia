@@ -7,7 +7,7 @@ const store = useBankAccountStore();
 store.$onAction(({ name, store, after }) => {
   after((result) => {
     if (result && ['charge','pay'].includes(name)) {
-      store.processTransaction(result as number);
+      store.processTransaction(result);
     }
   });
 });
@@ -26,6 +26,8 @@ const submitPayment = () => {
   <header>
     <div class="wrapper">
       <HelloWorld msg="Bank of Pinia" />
+
+      <button @click="store.reconcile()">Reconcile</button>
 
       <h3>Balance: {{ store.runningBalance }}</h3>
 

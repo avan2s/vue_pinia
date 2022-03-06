@@ -1,6 +1,6 @@
 # learn-pinia
 
-This template should help get you started developing with Vue 3 in Vite.
+This is the implementation of a simple pinia tutorial for vue 3 and typescript. [Tutorial-Video](https://www.youtube.com/watch?v=XdRcFsoJAWQ&list=PLEBCKcboIbaBQF85JcMhigiyLnZwJTlQY&index=28&t=495s)
 
 ## Recommended IDE Setup
 

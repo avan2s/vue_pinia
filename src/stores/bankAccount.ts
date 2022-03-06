@@ -40,6 +40,10 @@ export const useBankAccountStore = defineStore('bankAccount', {
             });
             return id; 
         },
+        reconcile(): void {
+            this.balance = this.runningBalance;
+            this.transactions = [];
+        },
         processTransaction(transactionId: number) {
             setTimeout(() => {
                 this.transactions = this.transactions.map((t) => {
