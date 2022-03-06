@@ -2,12 +2,21 @@
 import HelloWorld from "./components/HelloWorld.vue";
 import { useBankAccountStore } from "./stores/bankAccount";
 const store = useBankAccountStore();
+
+store.$onAction(({ name, store, after }) => {
+  after(result => {
+    if (result && name === "charge") {
+      store.processTransaction(result);
+    }
+  });
+});
 </script>
 
 <template>
   <header>
     <div class="wrapper">
       <HelloWorld msg="Bank of Pinia" />
+
       <h3>Balance: {{ store.runningBalance }}</h3>
 
       <button @click="store.charge(5)">Buy Coffee $5</button>

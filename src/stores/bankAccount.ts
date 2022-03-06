@@ -20,13 +20,25 @@ export const useBankAccountStore = defineStore('bankAccount', {
         } as BankDetails
     },
     actions: {
-        charge(amount: number) {
+        charge(amount: number): number {
+            const id = Date.now();
             this.transactions.push({
-                id: Date.now(),
+                id,
                 type: 'charge',
                 amount,
                 status: 'pending'
-            })
+            });
+            return id; 
+        },
+        processTransaction(transactionId: number) {
+            setTimeout(() => {
+                this.transactions = this.transactions.map((t) => {
+                    if(t.id === transactionId) {
+                        return {...t, status: 'processed'}
+                    }
+                    return t;
+                })
+            }, 5000)
         }
     },
     getters: {
