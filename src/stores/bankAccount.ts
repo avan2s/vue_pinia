@@ -30,6 +30,16 @@ export const useBankAccountStore = defineStore('bankAccount', {
             });
             return id; 
         },
+        pay(amount: number): number {
+            const id = Date.now();
+            this.transactions.push({
+                id,
+                type: 'payment',
+                amount: -amount,
+                status: 'pending'
+            });
+            return id; 
+        },
         processTransaction(transactionId: number) {
             setTimeout(() => {
                 this.transactions = this.transactions.map((t) => {
