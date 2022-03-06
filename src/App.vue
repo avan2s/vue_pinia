@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import HelloWorld from "./components/HelloWorld.vue";
-import TheWelcome from "./components/TheWelcome.vue";
+import { useCounterStore } from './stores/counter';
+
+const store = useCounterStore();
+
 </script>
 
 <template>
   <header>
     <div class="wrapper">
       <HelloWorld msg="Learn Pinia" />
+      <button @click="store.increment()">{{store.counter}}</button>
     </div>
   </header>
 </template>
